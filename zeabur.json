@@ -1,9 +1,6 @@
 {
-  "$schema": "https://schema.zeabur.app/template.json",
+  "$schema": "https://schema.zeabur.app/prebuilt.json",
   "build": {
-    "type": "static"
-  },
-  "output": {
-    "path": "."
+    "output": "."
   }
 }
