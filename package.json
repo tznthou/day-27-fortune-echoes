@@ -1,0 +1,19 @@
+{
+  "name": "day-27-fortune-echoes",
+  "version": "1.0.0",
+  "description": "財運迴響 - 台灣頭獎地圖視覺化",
+  "scripts": {
+    "dev": "npx serve -l 3000",
+    "start": "npx serve -l 3000"
+  },
+  "keywords": [
+    "taiwan",
+    "lottery",
+    "visualization",
+    "d3",
+    "leaflet",
+    "map"
+  ],
+  "author": "tznthou",
+  "license": "CC-BY-NC-SA-4.0"
+}

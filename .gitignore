@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Code review reports (internal use only)
+CODE_REVIEW_*.md
+
+# Raw source data (processed data is in data/)
+JackpotStores.csv
+towns-10t.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build artifacts
+dist/
+build/

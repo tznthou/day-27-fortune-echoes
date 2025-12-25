@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="財運迴響 - 台灣頭獎地圖視覺化">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' https://unpkg.com 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org https://*.tile.openstreetmap.org; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Fortune Echoes 財運迴響</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <!-- [M08] Loading Overlay -->
+  <div id="loading" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">載入財運資料中...</div>
+  </div>
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- SVG Overlay for D3 Ripples -->
+  <svg id="ripple-layer"></svg>
+
+  <!-- Control Panel -->
+  <div id="panel">
+    <h1 class="title">財運迴響</h1>
+    <p class="subtitle">Fortune Echoes</p>
+
+    <!-- Stats -->
+    <div id="stats">
+      <div class="stat-item">
+        <span class="stat-value" id="total-count">0</span>
+        <span class="stat-label">頭獎次數</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="district-count">0</span>
+        <span class="stat-label">行政區</span>
+      </div>
+    </div>
+
+    <!-- Legend / Filter [H04] -->
+    <div id="legend" role="group" aria-label="彩券類型篩選">
+      <label class="legend-item">
+        <input type="checkbox" class="lottery-filter" value="威力彩" checked
+               aria-label="顯示威力彩頭獎" id="filter-power">
+        <span class="legend-dot power" aria-hidden="true"></span>
+        <span>威力彩</span>
+      </label>
+      <label class="legend-item">
+        <input type="checkbox" class="lottery-filter" value="大樂透" checked
+               aria-label="顯示大樂透頭獎" id="filter-lotto">
+        <span class="legend-dot lotto" aria-hidden="true"></span>
+        <span>大樂透</span>
+      </label>
+      <label class="legend-item">
+        <input type="checkbox" class="lottery-filter" value="今彩539" checked
+               aria-label="顯示今彩539頭獎" id="filter-daily">
+        <span class="legend-dot daily" aria-hidden="true"></span>
+        <span>今彩539</span>
+      </label>
+    </div>
+
+    <!-- View Mode Toggle -->
+    <div id="view-mode">
+      <button class="mode-btn active" data-mode="cumulative">累積</button>
+      <button class="mode-btn" data-mode="monthly">單月</button>
+    </div>
+
+    <!-- Timeline [H05] -->
+    <div id="timeline" role="region" aria-label="時間軸控制">
+      <div class="timeline-header">
+        <span id="current-month" aria-live="polite">2024-01</span>
+        <button id="play-btn" aria-label="播放時間軸">▶</button>
+      </div>
+      <input type="range" id="timeline-slider" min="0" max="23" value="0" step="1"
+             aria-label="時間軸滑桿，選擇月份"
+             aria-valuetext="2024年1月">
+      <div class="timeline-labels">
+        <span id="timeline-start">2024-01</span>
+        <span id="timeline-end">2025-12</span>
+      </div>
+    </div>
+
+    <!-- Monthly Stats -->
+    <div id="monthly-stats">
+      <div class="monthly-item">
+        <span class="monthly-label">本月頭獎</span>
+        <span class="monthly-value" id="month-wins">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <button id="theme-btn" aria-label="切換主題">🌙</button>
+
+  <!-- Attribution -->
+  <div id="attribution">
+    <a href="https://github.com/tznthou/muripo-hq" target="_blank">Muripo HQ</a> |
+    數據：台灣彩券 |
+    地圖：<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>
+  </div>
+
+  <!-- Tooltip [H04] -->
+  <div id="tooltip" class="hidden" role="tooltip" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"
+          integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/map.js"></script>
+  <script src="static/js/ripple.js"></script>
+  <script src="static/js/timeline.js"></script>
+  <script src="static/js/app.js"></script>
+</body>
+</html>
